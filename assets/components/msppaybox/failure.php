@@ -6,5 +6,10 @@ $modx = new modX();
 $modx->initialize('web');
 $modx->getService('error','error.modError', '', '');
 
+/**
+ * @var mspPaybox $mspPaybox
+ */
 
-print_r($_GET);
+$mspPaybox = $modx->getService('mspPaybox');
+
+$mspPaybox->changeStatus($_GET['pg_order_id']);

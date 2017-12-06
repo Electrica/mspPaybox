@@ -1,7 +1,7 @@
 --------------------
 mspPaybox
 --------------------
-Author: John Doe <john@doe.com>
+Author: Electrica <info@modx.kz>
 --------------------
 
-A basic Extra for MODx Revolution.
+mspPaybox метод оплаты для MODX
