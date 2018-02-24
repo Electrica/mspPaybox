@@ -16,6 +16,11 @@ return [
         'value' => '/mspPaybox/assets/components/msppaybox/',
         'area' => 'msppaybox_main',
     ],
+    'id_order_redirect' => [
+        'xtype' => 'textfield',
+        'value' => '',
+        'area' => 'msppaybox_main'
+    ],
     'pg_merchant_id' => [
         'xtype' => 'textfield',
         'value' => '',
@@ -41,19 +46,14 @@ return [
         'value' => 'KZT',
         'area' => 'msppaybox_currency',
     ],
-//    'pg_result_url' => [
-//        'xtype' => 'textfield',
-//        'value' => '/assets/components/msppaybox/connector.php',
-//        'area' => 'msppaybox_main',
-//    ],
     'pg_success_url' => [
         'xtype' => 'textfield',
-        'value' => '',
+        'value' => 'assets/components/msppaybox/success.php',
         'area' => 'msppaybox_main',
     ],
     'pg_failure_url' => [
         'xtype' => 'textfield',
-        'value' => '',
+        'value' => 'assets/components/msppaybox/failure.php',
         'area' => 'msppaybox_main',
     ],
     'pg_language' => [

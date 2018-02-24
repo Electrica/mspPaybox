@@ -18,6 +18,12 @@ if(!$orderId = $_GET['pg_order_id']){
     exit('Нету id покупки');
 }
 
+//Меняем статус
+$miniShop2->changeOrderStatus();
+
+print_r($_GET);
+die();
+
 $pgOrder = str_replace('Order #', '', $orderId);
 $order = $modx->getObject('msOrder', array('num' => $pgOrder));
 

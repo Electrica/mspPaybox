@@ -2,7 +2,7 @@
 $xpdo_meta_map['mspPayboxOrder']= array (
   'package' => 'msppaybox',
   'version' => '1.1',
-  'table' => 'msppaybox_order',
+  'table' => 'ms2_msppaybox_order',
   'extends' => 'xPDOSimpleObject',
   'fields' => 
   array (
@@ -15,7 +15,7 @@ $xpdo_meta_map['mspPayboxOrder']= array (
     array (
       'dbtype' => 'int',
       'precision' => '10',
-      'phptype' => 'integer',
+      'phptype' => 'int',
       'null' => false,
       'default' => 0,
     ),

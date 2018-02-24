@@ -2,8 +2,8 @@
 <model package="msppaybox" baseClass="xPDOObject" platform="mysql" defaultEngine="InnoDB" phpdoc-package="msppaybox"
        version="1.1">
 
-    <object class="mspPayboxOrder" table="msppaybox_order" extends="xPDOSimpleObject">
-        <field key="order_id" dbtype="int" precision="10" phptype="integer" null="false" default="0"/>
+    <object class="mspPayboxOrder" table="ms2_msppaybox_order" extends="xPDOSimpleObject">
+        <field key="order_id" dbtype="int" precision="10" phptype="int" null="false" default="0"/>
         <field key="pg_sig" dbtype="varchar" precision="255" phptype="string" null="true" default=""/>
 
         <index alias="order_id" name="order_id" primary="false" unique="false" type="BTREE">

@@ -20,4 +20,5 @@ $_lang['setting_msppaybox_pg_testing_mode_desc'] = 'Флаг, принимает
 $_lang['setting_msppaybox_pg_result_url'] = 'URL для сообщения о результате платежа.';
 $_lang['setting_msppaybox_pg_secret_key_admission'] = 'Секретный ключ для приема платежей';
 $_lang['setting_msppaybox_pg_secret_key_payments'] = 'Секретный ключ для выплат клиентам';
+$_lang['setting_msppaybox_id_order_redirect'] = 'Id страницы с вызовом сниппета msgetOrder';
 
