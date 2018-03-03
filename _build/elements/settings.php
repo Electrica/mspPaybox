@@ -1,21 +1,21 @@
 <?php
 
 return [
-    'core_path' => [
-        'xtype' => 'textfield',
-        'value' => '{base_path}mspPaybox/core/components/msppaybox/',
-        'area' => 'msppaybox_main',
-    ],
-    'assets_path' => [
-        'xtype' => 'textfield',
-        'value' => '{base_path}mspPaybox/assets/components/msppaybox/',
-        'area' => 'msppaybox_main',
-    ],
-    'assets_url' => [
-        'xtype' => 'textfield',
-        'value' => '/mspPaybox/assets/components/msppaybox/',
-        'area' => 'msppaybox_main',
-    ],
+//    'core_path' => [
+//        'xtype' => 'textfield',
+//        'value' => '{base_path}mspPaybox/core/components/msppaybox/',
+//        'area' => 'msppaybox_main',
+//    ],
+//    'assets_path' => [
+//        'xtype' => 'textfield',
+//        'value' => '{base_path}mspPaybox/assets/components/msppaybox/',
+//        'area' => 'msppaybox_main',
+//    ],
+//    'assets_url' => [
+//        'xtype' => 'textfield',
+//        'value' => '/mspPaybox/assets/components/msppaybox/',
+//        'area' => 'msppaybox_main',
+//    ],
     'id_order_redirect' => [
         'xtype' => 'textfield',
         'value' => '',

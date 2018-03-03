@@ -10,25 +10,7 @@ $modx = new modX();
 $modx->initialize('web');
 $modx->getService('error','error.modError', '', '');
 
-/**
- * @var mspPaybox $mspPaybox
- */
-$mspPaybox = $modx->getService('mspPaybox','mspPaybox',$modx->getOption('msppaybox_core_path',null,$modx->getOption('core_path').'components/msppaybox/').'model/');
-
-/**
- * Ошибка платежа. Кидаем клиента на корзину, если нет то на главную. Выводим в лог ошибку и номер заказа.
- */
-
-$check = $modx->getCount('mspPayboxOrder', array('pg_sig' => $_GET['pg_sig']));
-if(!$check){
-    $modx->log(MODX_LOG_LEVEL_ERROR, "[mspPaybox] Кто то прислал не верные данные с mspPaybox. Данные: " . print_r($_GET, 1));
-    ;
-    //Редирект на главную
-    //$modx->sendRedirect($modx->makeUrl($modx->getOption('site_start'),'','','full'));
-    die();
-}
-
-$modx->log(MODX_LOG_LEVEL_ERROR, "Не удалось оплатить через mspPaybox. Данные: " . print_r($_GET, 1));
+$modx->log(MODX_LOG_LEVEL_ERROR, "[mspPaybox] Не удалось оплатить через mspPaybox. Данные: " . print_r($_GET, 1));
 
 $num = str_replace('Order #', '', $_GET['pg_order_id']);
 
@@ -37,7 +19,8 @@ $redirect = $orderId->get('id');
 //Если указан id куда редиректить
 if($id = $modx->getOption('msppaybox_id_order_redirect')){
     $url = array(
-        'msorder' => $redirect
+        'msorder' => $redirect,
+        'fail' => 1
     );
     $modx->sendRedirect($modx->makeUrl($id,'','','full') . '&' . http_build_query($url));
 }else{

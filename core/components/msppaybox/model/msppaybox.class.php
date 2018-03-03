@@ -2,7 +2,6 @@
 
 if (!class_exists('msPaymentInterface')) {
     /** @noinspection PhpIncludeInspection */
-    //require_once dirname(dirname(dirname(__FILE__))) . '/minishop2/model/minishop2/mspaymenthandler.class.php';
     require_once MODX_CORE_PATH . 'components/minishop2/model/minishop2/mspaymenthandler.class.php';
 }
 
@@ -23,14 +22,9 @@ class mspPaybox extends msPaymentHandler implements msPaymentInterface
     function __construct(xPDOObject $object, array $config = [])
     {
         parent::__construct($object, $config);
-        $this->modx =& $modx;
-
-        $this->modx->log(MODX_LOG_LEVEL_ERROR, print_r($this->modx->config, 1));
 
         $corePath = $this->modx->getOption('msppaybox_core_path', null, MODX_CORE_PATH . 'components/msppaybox/');
         $assetsUrl = $this->modx->getOption('msppaybox_assets_path', null, MODX_ASSETS_PATH . 'components/msppaybox/');
-        //$corePath = MODX_CORE_PATH . 'components/msppaybox/';
-        //$assetsUrl = MODX_ASSETS_URL . 'components/msppaybox/';
 
 
         $this->config = array_merge([
@@ -75,7 +69,7 @@ class mspPaybox extends msPaymentHandler implements msPaymentInterface
         //TODO Сделать редирект на главную если не будет настройки $this->modx->getOption('mspmollie_success_id', null, $this->modx->getOption('site_start'), true)
         $request = [
             'pg_amount'         => (int)$order->get('cost'),
-            'pg_check_url'      => $this->modx->getOption('site_url') . 'check', //url for checking status of order. It must be a real url on website, and return "OK" or "rejected"
+            'pg_check_url'      => '', //url for checking status of order. It must be a real url on website, and return "OK" or "rejected"
             'pg_description'    => 'Оплата за заказ ' . $order->get('num'), //any description of order
             'pg_encoding'       => 'UTF-8', //charset
             'pg_currency'       => $this->modx->getOption('msppaybox_currency'), //currency of payment, default is KZT
@@ -83,13 +77,14 @@ class mspPaybox extends msPaymentHandler implements msPaymentInterface
             'pg_lifetime'       => 86400, //lifetime of payment, default is 86400 seconds
             'pg_merchant_id'    => $this->modx->getOption('msppaybox_pg_merchant_id'), //id of merchant in PayBox system
             'pg_order_id'       => 'Order #'.$order->get('num'), //id of order in merchant database
-            'pg_result_url'     => $this->modx->getOption('site_url') . 'result', //url to which we will send the payment result
+            'pg_result_url'     => '', //url to which we will send the payment result
             'pg_request_method' => 'GET', //you can use GET, POST, XML
             'pg_salt'           => rand(21, 43433), //salt that will be used in encrypting the request
             'pg_success_url'    => $this->modx->getOption('site_url') . $this->modx->getOption('msppaybox_pg_success_url'), //here we will return the customer if payment was successful. It must be a real url on website
             'pg_failure_url'    => $this->modx->getOption('site_url') . $this->modx->getOption('msppaybox_pg_failure_url'), //here we will return the customer if the payment has failed. It must be a real url on website
             'pg_user_phone'     => $phone, //phone of the customer, which he will see in the form of payment
-            'pg_user_contact_email' => $email //email of the customer, where he will receive a notification of the status of payment
+            'pg_user_contact_email' => $email, //email of the customer, where he will receive a notification of the status of payment
+            'pg_testing_mode' => $this->modx->getOption('msppaybox_pg_testing_mode')
         ];
 
 
@@ -116,25 +111,7 @@ class mspPaybox extends msPaymentHandler implements msPaymentInterface
 
         $query = http_build_query($request);
         $link = 'https://paybox.kz/'.$url .'?'.$query;
-
         return $link;
-    }
-
-    public function changeStatus($orderNum, $check = 'fail', $status = 2, msOrder $order){
-
-        if($orderNum){
-            if($check == 'success'){
-                if($order->get('status') == $status){
-                    return true;
-                }
-
-
-            }elseif($check == 'fail'){
-
-            }else{
-                exit("Что то хуйня какая то");
-            }
-        }
     }
 
     public function saveOrder(array $saveArr){
@@ -148,8 +125,5 @@ class mspPaybox extends msPaymentHandler implements msPaymentInterface
         return true;
     }
 
-    public function checkOrder(){
-        return 'А м уту';
-    }
 
 }

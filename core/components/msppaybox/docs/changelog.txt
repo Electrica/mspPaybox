@@ -2,4 +2,4 @@ Changelog for mspPaybox.
 
 1.0.0-beta
 ==============
-- Первый
+- Оплата через сервис paybox.money
